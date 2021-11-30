@@ -41,6 +41,7 @@ class PiratePlacesDetailFragment:
     private lateinit var reportButton: Button
     private lateinit var photoFile: File
     private lateinit var photoUri: Uri
+    private lateinit var scannerButton: Button
 
     private val piratePlacesDetailViewModel : PiratePlacesDetailViewModel by lazy {
         ViewModelProviders.of(this).get(PiratePlacesDetailViewModel::class.java)
@@ -65,6 +66,7 @@ class PiratePlacesDetailFragment:
         photoButton = view.findViewById(R.id.place_camera) as ImageButton
         photoView = view.findViewById(R.id.place_photo) as ImageView
         reportButton = view.findViewById(R.id.share_place) as Button
+        scannerButton = view.findViewById(R.id.code_scanner) as Button
 
         return view
     }
@@ -130,13 +132,15 @@ class PiratePlacesDetailFragment:
                 putExtra(Intent.EXTRA_TEXT, getShareMessage())
                 putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_place_subject))
             }.also { intent ->
-                val chooserIntent = Intent.createChooser(intent, getString(R.string.share_place_text))
+                val chooserIntent =
+                    Intent.createChooser(intent, getString(R.string.share_place_text))
                 startActivity(chooserIntent)
             }
         }
 
         guestsField.apply {
-            val packContactIntent = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
+            val packContactIntent =
+                Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
 
             setOnClickListener {
                 startActivityForResult(packContactIntent, REQUEST_CONTACT)
@@ -165,20 +169,30 @@ class PiratePlacesDetailFragment:
                 val cameraActivities: List<ResolveInfo> =
                     packageManager.queryIntentActivities(
                         captureImage,
-                        PackageManager.MATCH_DEFAULT_ONLY)
+                        PackageManager.MATCH_DEFAULT_ONLY
+                    )
 
                 for (cameraActivity in cameraActivities) {
                     requireActivity().grantUriPermission(
                         cameraActivity.activityInfo.packageName,
                         photoUri,
-                        Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+                        Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                    )
                 }
 
                 startActivityForResult(captureImage, REQUEST_PHOTO)
             }
         }
-    }
+        scannerButton.setOnClickListener {
+            val scannerFragment = codeScannerFragment()
+            val fragmentManager = activity!!.supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragment_container, scannerFragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
 
+    }
     override fun onStop() {
         super.onStop()
         piratePlacesDetailViewModel.savePiratePlace(place)
@@ -217,7 +231,7 @@ class PiratePlacesDetailFragment:
                         return
                     }
 
-                    // Pull out the first column of the first row of data - that is your suspect's name
+                    // Pull out the first column of the first row of data
                     it.moveToFirst()
                     val guest = it.getString(0)
                     place.visitedWith = guest
@@ -278,5 +292,19 @@ class PiratePlacesDetailFragment:
             }
         }
     }
+    fun onCheckboxClicked(view: View) {
+        if (view is CheckBox) {
+            val checked: Boolean = view.isChecked
 
+            when (view.id) {
+                R.id.order_more -> {
+                    if (checked) {
+                        // add to supplier repository
+                    } else {
+                        // do nothing
+                    }
+                }
+            }
+        }
+    }
 }

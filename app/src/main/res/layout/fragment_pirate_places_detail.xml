@@ -35,6 +35,13 @@
                 android:src="@android:drawable/ic_menu_camera"
                 android:contentDescription="@string/place_photo_button_description"/>
 
+            <Button
+                android:id="@+id/code_scanner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                tools:text="@string/scan_code" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -48,37 +55,46 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/place_name_hint"/>
+            <TextView
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/place_guests_label"/>
+
+            <TextView
+                android:id="@+id/visited_with"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:textSize="10sp" />
+
+            <TextView
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/place_details"
+                android:textSize="12sp" />
+            <TextView
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/quantity"
+                android:textSize="12sp" />
+            <CheckBox android:id="@+id/order_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/order"
+                android:onClick="onCheckboxClicked"/>
+
 
         </LinearLayout>
     </LinearLayout>
-
-
-    <TextView
-        style="?android:listSeparatorTextViewStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/place_details"
-        android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
-        <TextView
-            style="?android:listSeparatorTextViewStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/place_guests_label"/>
-
-        <TextView
-            android:id="@+id/visited_with"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:textSize="16sp"
-            tools:text="@string/visited_with_hint" />
 
     </LinearLayout>
 

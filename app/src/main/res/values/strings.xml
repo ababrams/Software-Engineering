@@ -9,15 +9,15 @@
     <string name="not_checked_in">Not Checked In</string>
     <string name="checked_in_message">You Checked In!</string>
     <string name="place_name_label"></string>
-    <string name="place_name_hint">Enter the name of the item here</string>
+    <string name="place_name_hint">Name of the item</string>
     <string name="visited_with_hint">Click here to select who added the new item</string>
     <string name="place_guests_label">Person Added</string>
     <string name="new_pirate_place">New Item</string>
-    <string name="place_details">Details</string>
+    <string name="place_details">Quantity in Stock</string>
+    <string name="quantity">Quantity Needed</string>
+    <string name="order">Order Quantity Needed</string>
     <string name="place_photo_button_description">Scan QR Code of Item</string>
-    <string name="place_photo_no_image_description">
-        QR code Scanned (not set)
-    </string>
+    <string name="place_photo_no_image_description">QR code Scanned (not set)</string>
     <string name="place_photo_image_description">QR code (set)</string>
     <string name="camera_message">Clicked QR button</string>
     <string name="share_place_text">Share Your Item</string>
@@ -26,5 +26,5 @@
     <string name="share_place_subject">Just added an item to the Supply list!</string>
     <string name="title_activity_places_map">Map</string>
     <string name="view_places_map">View Places Map</string>
-
+    <string name="scan_code">Scan QR Code</string>
 </resources>
